@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quizzes – IB Film Studies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="nav-title">
+      <div class="nav-logo"></div>
+      <div>
+        <h1>IB Film Studies</h1>
+        <span>Quizzes</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../theory/">Theory</a>
+      <a href="../analysis/">Analysis</a>
+      <a href="../production/">Production</a>
+      <a href="../assessments/">Assessments</a>
+      <a href="../case-studies/">Case Studies</a>
+      <a href="../resources/">Resources</a>
+      <a href="../videos/">Videos</a>
+      <a href="../quizzes/">Quizzes</a>
+      <a href="../flashcards/">Flashcards</a>
+      <a href="../specification/">Specification</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <h2 class="page-title">Film Terminology Quiz</h2>
+  <p class="page-tagline">Test yourself on key film terms. More quizzes can be added over time.</p>
+
+  <div class="panel">
+    <h3>Quick Quiz</h3>
+    <p>Choose the best answer for each question, then check your score.</p>
+
+    <form id="quiz-form">
+
+      <div style="margin-bottom:0.8rem;">
+        <p><strong>1.</strong> What is diegetic sound?</p>
+        <label><input type="radio" name="q1" value="a"> Sound that only the audience can hear.</label><br>
+        <label><input type="radio" name="q1" value="b"> Sound that exists within the world of the film.</label><br>
+        <label><input type="radio" name="q1" value="c"> Sound added in post-production.</label>
+      </div>
+
+      <div style="margin-bottom:0.8rem;">
+        <p><strong>2.</strong> A jump cut is best described as:</p>
+        <label><input type="radio" name="q2" value="a"> A cut that maintains perfect continuity.</label><br>
+        <label><input type="radio" name="q2" value="b"> A cut that disrupts continuity, often visibly.</label><br>
+        <label><input type="radio" name="q2" value="c"> A cut between two different locations.</label>
+      </div>
+
+      <div style="margin-bottom:0.8rem;">
+        <p><strong>3.</strong> Mise-en-scène refers to:</p>
+        <label><input type="radio" name="q3" value="a"> The editing style of a film.</label><br>
+        <label><input type="radio" name="q3" value="b"> The arrangement of everything in front of the camera.</label><br>
+        <label><input type="radio" name="q3" value="c"> The sound design of a film.</label>
+      </div>
+
+      <button type="button" onclick="gradeQuiz()" style="margin-top:0.5rem;">Check Answers</button>
+    </form>
+
+    <p id="quiz-result" style="margin-top:0.6rem; color:var(--accent2);"></p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>IB Film Studies – Quizzes</span>
+    <span>Add more questions or separate quizzes as needed.</span>
+  </div>
+</footer>
+
+<script>
+function gradeQuiz() {
+  const answers = { q1: 'b', q2: 'b', q3: 'b' };
+  let score = 0, total = Object.keys(answers).length;
+
+  for (const q in answers) {
+    const selected = document.querySelector('input[name="'+q+'"]:checked');
+    if (selected && selected.value === answers[q]) score++;
+  }
+
+  const result = document.getElementById('quiz-result');
+  result.textContent = "You scored " + score + " out of " + total + ".";
+}
+</script>
+
+</body>
+</html>
