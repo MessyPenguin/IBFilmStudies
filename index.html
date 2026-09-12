@@ -1,1 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IB Film Studies – Sixth Form Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --panel: #11141f;
+      --accent: #e63946;
+      --accent-soft: rgba(230,57,70,0.35);
+      --accent2: #1d9bf0;
+      --text: #f5f5f5;
+      --muted: #a0a4b8;
+      --border: #222637;
+      --shadow: 0 0 25px rgba(0,0,0,0.7);
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #151827 0, #05060a 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(to bottom, rgba(5,6,10,0.95), rgba(5,6,10,0.85));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--accent-soft);
+      background: radial-gradient(circle at 30% 0%, #e63946 0, #05060a 55%);
+      box-shadow: 0 0 18px rgba(230,57,70,0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-logo::before,
+    .nav-logo::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(245,245,245,0.12);
+      transform: skewX(-12deg);
+    }
+
+    .nav-logo::after {
+      inset: 10px;
+      border-color: rgba(245,245,245,0.25);
+      opacity: 0.7;
+    }
+
+    .nav-title h1 {
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-title span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(160,164,184,0.4);
+      background: radial-gradient(circle at top, rgba(17,20,31,0.9), rgba(11,13,20,0.9));
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--accent2);
+      box-shadow: 0 0 16px rgba(29,155,240,0.45);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .section-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .panel {
+      background: radial-gradient(circle at top left, #181c2b 0, #0b0d14 55%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 1rem 1.1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top, rgba(230,57,70,0.12), transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .panel h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.4rem;
+    }
+
+    .panel-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .panel ul {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .panel ul li {
+      margin-bottom: 0.25rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .panel ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-size: 0.75rem;
+      top: 0.1rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(160,164,184,0.5);
+      color: var(--muted);
+      background: radial-gradient(circle at top, rgba(17,20,31,0.9), rgba(11,13,20,0.9));
+    }
+
+    .pill.accent {
+      border-color: var(--accent);
+      color: #fbd5da;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-main {
+      background: radial-gradient(circle at top left, #181c2b 0, #0b0d14 55%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 1.3rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 10% 0%, rgba(29,155,240,0.18), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-main h2 {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-main p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-main strong {
+      color: #fbd5da;
+    }
+
+    .hero-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-list li {
+      margin-bottom: 0.3rem;
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .hero-list li::before {
+      content: "●";
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      font-size: 0.55rem;
+      color: var(--accent);
+    }
+
+    .hero-aside {
+      background: radial-gradient(circle at top, #181c2b 0, #0b0d14 55%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 1rem 1.1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-aside::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 80% 0%, rgba(230,57,70,0.18), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-aside h3 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-aside p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-aside ul {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-aside ul li {
+      margin-bottom: 0.25rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .hero-aside ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-size: 0.75rem;
+      top: 0.1rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(160,164,184,0.4), transparent);
+      margin: 2rem 0 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1rem 1.25rem 1.5rem;
+      background: radial-gradient(circle at bottom, #151827 0, #05060a 55%);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    footer span {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <div class="nav-title">
+      <div class="nav-logo" aria-hidden="true"></div>
+      <div>
+        <h1>IB Film Studies</h1>
+        <span>Royal Harbour Academy – Sixth Form Portal</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#theory">Film Theory</a>
+      <a href="#analysis">Textual Analysis</a>
+      <a href="#production">Production Skills</a>
+      <a href="#assessments">IB Assessments</a>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#resources">Resources</a>
+      <a href="#revision">Revision</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- Home / Overview -->
+  <section id="home">
+    <div class="hero">
+      <div class="hero-main">
+        <h2>Start Here – Welcome to IB Film</h2>
+        <p>
+          This site is your central hub for <strong>IB Film Studies</strong> at Sixth Form. It brings together
+          theory, analysis, production skills, assessment guidance, and curated resources to support you
+          throughout the course.
+        </p>
+        <ul class="hero-list">
+          <li>Learn the core language of film: cinematography, editing, sound, mise-en-scène, performance.</li>
+          <li>Practise textual analysis with guided questions and sample responses.</li>
+          <li>Develop practical production skills for your portfolio and collaborative film project.</li>
+          <li>Understand each IB assessment and how to meet the criteria.</li>
+          <li>Explore case studies of key films and movements to deepen your understanding.</li>
+        </ul>
+        <p>
+          Use the navigation above to jump to a section, or follow this suggested path:
+        </p>
+        <ul class="hero-list">
+          <li>Begin with <strong>Film Theory</strong> to build your vocabulary.</li>
+          <li>Move into <strong>Textual Analysis</strong> to practise close reading of scenes.</li>
+          <li>Explore <strong>Production Skills</strong> as you plan and create your own work.</li>
+          <li>Regularly check <strong>IB Assessments</strong> so you know what you’re working towards.</li>
+        </ul>
+      </div>
+      <aside class="hero-aside">
+        <h3>How to use this site</h3>
+        <p>
+          Think of this site as a living textbook and toolkit. It won’t replace watching films or making them,
+          but it will help you organise your thinking and prepare for assessments.
+        </p>
+        <ul>
+          <li>Use it during lessons as a reference and for tasks set by your teacher.</li>
+          <li>Return to it when revising or planning coursework.</li>
+          <li>Follow the prompts and questions – don’t just read, <strong>respond</strong>.</li>
+          <li>Bookmark key pages that feel most relevant to your current project.</li>
+        </ul>
+        <div class="pill-row" style="margin-top:0.6rem;">
+          <span class="pill accent">Year 12 &amp; 13</span>
+          <span class="pill">HL &amp; SL</span>
+          <span class="pill">Analysis</span>
+          <span class="pill">Production</span>
+          <span class="pill">Reflection</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Film Theory & Concepts -->
+  <section id="theory">
+    <div class="section-header">
+      <h2 class="section-title">Film Theory &amp; Core Concepts</h2>
+      <p class="section-tagline">Build your film language – the tools you’ll use in every analysis and production.</p>
+    </div>
+    <div class="panel-grid">
+      <article class="panel">
+        <h3>Cinematography</h3>
+        <p class="panel-subtitle">Camera, framing, movement, and visual composition.</p>
+        <ul>
+          <li>Shot types: close-up, medium, long shot, extreme close-up.</li>
+          <li>Camera angles: high, low, eye-level, Dutch tilt.</li>
+          <li>Movement: pan, tilt, track, handheld, static.</li>
+          <li>Lens choice and depth of field.</li>
+          <li>Visual motifs and recurring compositions.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Visual storytelling</span>
+          <span class="pill">Point of view</span>
+          <span class="pill">Framing</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Editing</h3>
+        <p class="panel-subtitle">Time, rhythm, continuity, and juxtaposition.</p>
+        <ul>
+          <li>Continuity editing and match cuts.</li>
+          <li>Montage and associative editing.</li>
+          <li>Pace and rhythm – how editing shapes emotion.</li>
+          <li>Transitions: cuts, dissolves, wipes, fades.</li>
+          <li>Parallel editing and cross-cutting.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Temporal control</span>
+          <span class="pill">Narrative flow</span>
+          <span class="pill">Juxtaposition</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Sound</h3>
+        <p class="panel-subtitle">Dialogue, music, effects, and sound design.</p>
+        <ul>
+          <li>Diegetic vs non-diegetic sound.</li>
+          <li>Dialogue and voiceover.</li>
+          <li>Sound effects and Foley.</li>
+          <li>Music and score – mood and theme.</li>
+          <li>Silence and sound perspective.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Atmosphere</span>
+          <span class="pill">Emotion</span>
+          <span class="pill">Perspective</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Mise-en-scène</h3>
+        <p class="panel-subtitle">Everything placed in front of the camera.</p>
+        <ul>
+          <li>Setting and location.</li>
+          <li>Costume and makeup.</li>
+          <li>Props and symbolic objects.</li>
+          <li>Lighting style and colour palette.</li>
+          <li>Blocking and movement of actors.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">World-building</span>
+          <span class="pill">Symbolism</span>
+          <span class="pill">Tone</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Performance &amp; Character</h3>
+        <p class="panel-subtitle">Acting choices and character construction.</p>
+        <ul>
+          <li>Physicality, gesture, and facial expression.</li>
+          <li>Vocal delivery and timing.</li>
+          <li>Character arcs and development.</li>
+          <li>Ensemble dynamics and relationships.</li>
+          <li>Star persona and casting choices.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Characterisation</span>
+          <span class="pill">Emotion</span>
+          <span class="pill">Presence</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Narrative &amp; Genre</h3>
+        <p class="panel-subtitle">Story structure, conventions, and expectations.</p>
+        <ul>
+          <li>Classical vs non-linear narrative.</li>
+          <li>Plot vs story – events vs how they’re told.</li>
+          <li>Genre conventions and subversion.</li>
+          <li>Hybrid genres and cross-genre films.</li>
+          <li>Open vs closed endings.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Structure</span>
+          <span class="pill">Expectation</span>
+          <span class="pill">Subversion</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Representation &amp; Ideology</h3>
+        <p class="panel-subtitle">How film constructs identities and ideas.</p>
+        <ul>
+          <li>Representation of gender, race, class, sexuality.</li>
+          <li>Stereotypes, archetypes, and complexity.</li>
+          <li>Ideological messages – explicit and implicit.</li>
+          <li>National cinema and cultural context.</li>
+          <li>Audience positioning and address.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Identity</span>
+          <span class="pill">Power</span>
+          <span class="pill">Context</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Auteur &amp; Film Movements</h3>
+        <p class="panel-subtitle">Directors, styles, and historical trends.</p>
+        <ul>
+          <li>Auteur theory – director as author.</li>
+          <li>Recurring themes and stylistic signatures.</li>
+          <li>German Expressionism, Italian Neorealism, French New Wave.</li>
+          <li>New Hollywood, Dogme 95, contemporary movements.</li>
+          <li>Debates around authorship and collaboration.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Style</span>
+          <span class="pill">History</span>
+          <span class="pill">Influence</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Textual Analysis Skills -->
+  <section id="analysis">
+    <div class="section-header">
+      <h2 class="section-title">Textual Analysis Skills</h2>
+      <p class="section-tagline">Learn to read film closely and express your ideas clearly.</p>
+    </div>
+    <div class="panel-grid">
+      <article class="panel">
+        <h3>How to Analyse a Scene</h3>
+        <p class="panel-subtitle">A practical approach to close reading.</p>
+        <ul>
+          <li>Watch the scene multiple times – once for story, then for detail.</li>
+          <li>Identify key moments: turning points, emotional peaks, visual motifs.</li>
+          <li>Note cinematography, editing, sound, and mise-en-scène choices.</li>
+          <li>Ask: how do these choices shape meaning and audience response?</li>
+          <li>Connect the scene to the film’s wider themes and context.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Annotating Clips</h3>
+        <p class="panel-subtitle">Organising your observations.</p>
+        <ul>
+          <li>Use timestamps to anchor your notes.</li>
+          <li>Separate description (what happens) from analysis (why it matters).</li>
+          <li>Highlight recurring patterns and contrasts.</li>
+          <li>Link technical choices to character and theme.</li>
+          <li>Turn your annotations into structured paragraphs.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Writing Textual Analysis</h3>
+        <p class="panel-subtitle">From notes to a coherent essay.</p>
+        <ul>
+          <li>Begin with a clear focus: what aspect of the scene are you analysing?</li>
+          <li>Use topic sentences to guide each paragraph.</li>
+          <li>Integrate technical vocabulary naturally – don’t just list terms.</li>
+          <li>Support points with specific examples from the scene.</li>
+          <li>Conclude by linking back to the film’s overall meaning.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Sample Analysis (Teacher Models)</h3>
+        <p class="panel-subtitle">Examples of strong responses.</p>
+        <ul>
+          <li>Annotated exemplar of a scene analysis.</li>
+          <li>Highlighting effective use of terminology.</li>
+          <li>Demonstrating clear structure and argument.</li>
+          <li>Showing how to balance description and interpretation.</li>
+          <li>Identifying where the response meets IB criteria.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Practice Clips &amp; Prompts</h3>
+        <p class="panel-subtitle">Scenes to analyse with guiding questions.</p>
+        <ul>
+          <li>Short clips chosen for clear use of film language.</li>
+          <li>Questions focusing on one element at a time (e.g. sound, editing).</li>
+          <li>Extension tasks connecting to representation and ideology.</li>
+          <li>Peer discussion prompts for group work.</li>
+          <li>Optional timed practice to build exam confidence.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Production Skills -->
+  <section id="production">
+    <div class="section-header">
+      <h2 class="section-title">Production Skills</h2>
+      <p class="section-tagline">Practical tools for planning, shooting, and editing your own films.</p>
+    </div>
+    <div class="panel-grid">
+      <article class="panel">
+        <h3>Camera Basics</h3>
+        <p class="panel-subtitle">Using the camera with intention.</p>
+        <ul>
+          <li>Understanding exposure: aperture, shutter speed, ISO.</li>
+          <li>Framing and composition – rule of thirds and beyond.</li>
+          <li>Stability: tripod, handheld, gimbal.</li>
+          <li>Focus control and depth of field.</li>
+          <li>Planning shot lists to support your story.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Lighting</h3>
+        <p class="panel-subtitle">Shaping mood and visibility.</p>
+        <ul>
+          <li>Three-point lighting basics.</li>
+          <li>Natural vs artificial light.</li>
+          <li>Hard vs soft light and diffusion.</li>
+          <li>Colour temperature and gels.</li>
+          <li>Using shadows and contrast creatively.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Sound Recording</h3>
+        <p class="panel-subtitle">Capturing clean, usable audio.</p>
+        <ul>
+          <li>Microphone types: lavalier, shotgun, handheld.</li>
+          <li>Monitoring levels and avoiding clipping.</li>
+          <li>Reducing background noise and echo.</li>
+          <li>Recording room tone and ambient sound.</li>
+          <li>Syncing sound with picture in post-production.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Editing Fundamentals</h3>
+        <p class="panel-subtitle">Building your film in the timeline.</p>
+        <ul>
+          <li>Organising footage and naming files.</li>
+          <li>Rough cut vs fine cut.</li>
+          <li>Basic transitions and continuity.</li>
+          <li>Integrating sound, music, and effects.</li>
+          <li>Exporting in appropriate formats and resolutions.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Storyboarding &amp; Script</h3>
+        <p class="panel-subtitle">Planning before you shoot.</p>
+        <ul>
+          <li>Visualising key moments with simple drawings.</li>
+          <li>Shot-by-shot planning for complex sequences.</li>
+          <li>Script formatting basics (sluglines, dialogue, action).</li>
+          <li>Rewriting and refining for clarity.</li>
+          <li>Aligning script and storyboard with production schedule.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Directing &amp; Collaboration</h3>
+        <p class="panel-subtitle">Working with people, not just equipment.</p>
+        <ul>
+          <li>Communicating vision to cast and crew.</li>
+          <li>Giving constructive direction to actors.</li>
+          <li>Managing time on set.</li>
+          <li>Respecting roles and responsibilities.</li>
+          <li>Reflecting on collaboration in your IB work.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Production Workflow</h3>
+        <p class="panel-subtitle">From idea to finished film.</p>
+        <ul>
+          <li>Development: idea, research, treatment.</li>
+          <li>Pre-production: script, storyboard, schedule, casting.</li>
+          <li>Production: shooting, sound, directing.</li>
+          <li>Post-production: editing, sound design, colour.</li>
+          <li>Reflection: evaluating process and outcome.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- IB Assessments -->
+  <section id="assessments">
+    <div class="section-header">
+      <h2 class="section-title">IB Film Assessments</h2>
+      <p class="section-tagline">Understand each component and how to meet the criteria.</p>
+    </div>
+    <div class="panel-grid">
+      <article class="panel">
+        <h3>Film Portfolio</h3>
+        <p class="panel-subtitle">Exploring film elements through your own work.</p>
+        <ul>
+          <li>Overview of requirements for HL and SL.</li>
+          <li>Choosing film elements (e.g. editing, sound, mise-en-scène).</li>
+          <li>Planning and producing portfolio pieces.</li>
+          <li>Writing reflective statements that connect practice and theory.</li>
+          <li>Common strengths and pitfalls in portfolio submissions.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill accent">Coursework</span>
+          <span class="pill">Reflection</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Textual Analysis</h3>
+        <p class="panel-subtitle">Close analysis of a chosen scene.</p>
+        <ul>
+          <li>Understanding the task and marking criteria.</li>
+          <li>Selecting an appropriate scene from a prescribed film.</li>
+          <li>Structuring your analysis effectively.</li>
+          <li>Integrating film language and contextual insight.</li>
+          <li>Sample outlines and planning templates.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill accent">Internal assessment</span>
+          <span class="pill">Close reading</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Collaborative Film Project</h3>
+        <p class="panel-subtitle">Working as a team to create a film.</p>
+        <ul>
+          <li>Roles and responsibilities within the group.</li>
+          <li>Developing a shared concept and treatment.</li>
+          <li>Planning production and managing time.</li>
+          <li>Documenting collaboration and decision-making.</li>
+          <li>Reflecting on process and final product.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill accent">Group work</span>
+          <span class="pill">Process</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Comparative Study</h3>
+        <p class="panel-subtitle">Comparing films across contexts.</p>
+        <ul>
+          <li>Choosing appropriate films for comparison.</li>
+          <li>Identifying points of similarity and difference.</li>
+          <li>Structuring the study around clear lines of inquiry.</li>
+          <li>Integrating theory, context, and close analysis.</li>
+          <li>Using visual presentation effectively (slides, layout).</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill accent">External assessment</span>
+          <span class="pill">Comparison</span>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Assessment Criteria &amp; Rubrics</h3>
+        <p class="panel-subtitle">What examiners are looking for.</p>
+        <ul>
+          <li>Breakdown of key criteria for each component.</li>
+          <li>Examples of work that meets and exceeds expectations.</li>
+          <li>Checklists for self-assessment before submission.</li>
+          <li>Guidance on academic honesty and referencing.</li>
+          <li>Tips for managing workload across components.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Film Case Studies -->
+  <section id="case-studies">
+    <div class="section-header">
+      <h2 class="section-title">Film Case Studies</h2>
+      <p class="section-tagline">Deep dives into key films and movements you’ll study.</p>
+    </div>
+    <div class="panel-grid">
+      <article class="panel">
+        <h3>Case Study Template</h3>
+        <p class="panel-subtitle">How each film page is structured.</p>
+        <ul>
+          <li>Context: director, year, country, movement.</li>
+          <li>Synopsis: brief outline of the story.</li>
+          <li>Key scenes: moments to focus on in analysis.</li>
+          <li>Technical highlights: cinematography, editing, sound, mise-en-scène.</li>
+          <li>Themes, representation, and ideological questions.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Example: German Expressionism</h3>
+        <p class="panel-subtitle">Stylised worlds and psychological shadows.</p>
+        <ul>
+          <li>Historical context and key directors.</li>
+          <li>Visual style: distorted sets, high contrast lighting.</li>
+          <li>Use of mise-en-scène to express inner states.</li>
+          <li>Influence on later horror and noir.</li>
+          <li>Suggested films for study and analysis tasks.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Example: Italian Neorealism</h3>
+        <p class="panel-subtitle">Real locations, non-professional actors, social focus.</p>
+        <ul>
+          <li>Post-war context and economic conditions.</li>
+          <li>Use of location shooting and natural light.</li>
+          <li>Focus on everyday lives and social issues.</li>
+          <li>Blending documentary feel with narrative structure.</li>
+          <li>Suggested films and discussion questions.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Example: French New Wave</h3>
+        <p class="panel-subtitle">Experimentation, self-reflexivity, and playfulness.</p>
+        <ul>
+          <li>Break with classical continuity editing.</li>
+          <li>Jump cuts, direct address, and on-location shooting.</li>
+          <li>Directors as critics and auteurs.</li>
+          <li>Influence on modern independent cinema.</li>
+          <li>Suggested films and analysis prompts.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Director Focus</h3>
+        <p class="panel-subtitle">Auteurs you may study in depth.</p>
+        <ul>
+          <li>Recurring themes and stylistic signatures.</li>
+          <li>Relationship between director and movement.</li>
+          <li>Case studies of specific films.</li>
+          <li>Debates around authorship and collaboration.</li>
+          <li>Links to interviews and critical writing.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Resources -->
+  <section id="resources">
+    <div class="section-header">
+      <h2 class="section-title">Resources</h2>
+      <p class="section-tagline">Curated links, tools, and templates to support your work.</p>
+    </div>
+    <div class="panel-grid">
+      <article class="panel">
+        <h3>Film Theory &amp; Analysis</h3>
+        <p class="panel-subtitle">Reading and viewing to deepen understanding.</p>
+        <ul>
+          <li>Introductory guides to film language.</li>
+          <li>Articles on cinematography, editing, and sound.</li>
+          <li>Video essays analysing key films and scenes.</li>
+          <li>Recommended books for extended reading.</li>
+          <li>Glossary of key terms (downloadable PDF).</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Production Tutorials</h3>
+        <p class="panel-subtitle">Practical guides for camera, sound, and editing.</p>
+        <ul>
+          <li>Beginner-friendly camera operation videos.</li>
+          <li>Sound recording and microphone placement tutorials.</li>
+          <li>Editing software basics (e.g. Premiere, DaVinci Resolve).</li>
+          <li>Colour grading and sound design introductions.</li>
+          <li>Templates for shot lists and storyboards.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>IB-Specific Support</h3>
+        <p class="panel-subtitle">Resources aligned with the IB Film course.</p>
+        <ul>
+          <li>Official IB Film guide (where permitted).</li>
+          <li>Exemplar work and examiner comments (summarised).</li>
+          <li>Checklists for each assessment component.</li>
+          <li>Academic honesty and referencing guidance.</li>
+          <li>Time management tips across the two-year course.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Templates &amp; Downloads</h3>
+        <p class="panel-subtitle">Ready-to-use documents.</p>
+        <ul>
+          <li>Textual analysis planning sheet.</li>
+          <li>Comparative study outline template.</li>
+          <li>Portfolio reflection prompts.</li>
+          <li>Collaborative project production schedule.</li>
+          <li>Shot list and storyboard grids.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Revision & Practice -->
+  <section id="revision">
+    <div class="section-header">
+      <h2 class="section-title">Revision &amp; Practice</h2>
+      <p class="section-tagline">Tools to help you prepare for assessments and consolidate learning.</p>
+    </div>
+    <div class="panel-grid">
+      <article class="panel">
+        <h3>Key Concepts Checklist</h3>
+        <p class="panel-subtitle">What you should be confident with by the end of the course.</p>
+        <ul>
+          <li>Core film language across all elements.</li>
+          <li>Ability to analyse scenes in depth.</li>
+          <li>Understanding of major movements and contexts.</li>
+          <li>Experience in planning and producing short films.</li>
+          <li>Familiarity with all IB assessment components.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Practice Questions</h3>
+        <p class="panel-subtitle">Prompts for written and oral responses.</p>
+        <ul>
+          <li>Scene-based analysis questions.</li>
+          <li>Comparative prompts linking two films.</li>
+          <li>Reflection questions on your own production work.</li>
+          <li>Short timed tasks to build exam stamina.</li>
+          <li>Group discussion prompts for revision sessions.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Flashcards &amp; Quick Drills</h3>
+        <p class="panel-subtitle">Rapid recall of terms and concepts.</p>
+        <ul>
+          <li>Key terminology flashcards (digital or printable).</li>
+          <li>Movement/director matching exercises.</li>
+          <li>Technical element identification from stills.</li>
+          <li>Mini tasks focusing on one element at a time.</li>
+          <li>Self-quizzing routines for independent study.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Exam &amp; Submission Strategy</h3>
+        <p class="panel-subtitle">Planning your time and effort.</p>
+        <ul>
+          <li>Suggested timeline for major coursework milestones.</li>
+          <li>Balancing production and written work.</li>
+          <li>Final checks before submitting each component.</li>
+          <li>Managing stress and staying creative.</li>
+          <li>Reflecting on your journey as a film student.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>IB Film Studies – Royal Harbour Academy Sixth Form</span>
+    <span>Built as a learning portal for students – hosted via GitHub Pages.</span>
+  </div>
+</footer>
+</body>
+</html>
 
