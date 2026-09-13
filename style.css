@@ -1,148 +1,195 @@
-/* CINEMATIC DARK THEME — SHARED ACROSS ALL PAGES */
+/* ---------------------------------------------------------
+   MODERN FILM SCHOOL AESTHETIC — GLOBAL STYLE UPGRADE
+   Warm Gold & Sepia Film Reel Macro Hero Banner
+   Subtle, Professional, Academic
+--------------------------------------------------------- */
+
+/* Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700&family=Bebas+Neue&display=swap');
 
 :root {
-  --bg: #05060a;
-  --bg-alt: #0b0d14;
-  --panel: #11141f;
-  --accent: #e63946;
-  --accent2: #1d9bf0;
-  --text: #f5f5f5;
-  --muted: #a0a4b8;
-  --border: #222637;
-  --radius: 10px;
-  --shadow: 0 0 25px rgba(0,0,0,0.7);
+  --bg: #0d1117;
+  --bg2: #161b22;
+  --text: #c9d1d9;
+  --border: #2d333b;
+  --accent: #d4a94a;      /* Warm gold */
+  --accent2: #a57cff;     /* Soft academic purple */
+  --shadow: 0 0 25px rgba(0,0,0,0.45);
 }
 
-* { box-sizing:border-box; margin:0; padding:0; }
-
+/* Global Reset */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #151827 0, #05060a 55%);
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-a { color: var(--accent2); text-decoration:none; }
-a:hover { text-decoration:underline; }
-
-/* NAVIGATION */
-header {
-  position:sticky; top:0; z-index:50;
-  background: linear-gradient(to bottom, rgba(5,6,10,0.95), rgba(5,6,10,0.85));
-  border-bottom:1px solid var(--border);
-  backdrop-filter: blur(10px);
+/* Subtle Film Grain Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  opacity: 0.06;
+  z-index: 0;
 }
 
+/* Navigation */
 .nav {
-  max-width:1100px; margin:0 auto;
-  padding:0.75rem 1.25rem;
-  display:flex; align-items:center; justify-content:space-between;
-}
-
-.nav-title { display:flex; align-items:center; gap:0.6rem; }
-
-.nav-logo {
-  width:32px; height:32px; border-radius:6px;
-  background: radial-gradient(circle at 30% 0%, #e63946 0, #05060a 55%);
-  border:1px solid rgba(230,57,70,0.35);
-  box-shadow:0 0 18px rgba(230,57,70,0.45);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .nav-title h1 {
-  font-size:1.05rem; text-transform:uppercase; letter-spacing:0.06em;
-}
-
-.nav-title span { font-size:0.8rem; color:var(--muted); }
-
-.nav-links {
-  display:flex; flex-wrap:wrap; gap:0.4rem;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: 0.03em;
 }
 
 .nav-links a {
-  font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em;
-  padding:0.35rem 0.7rem; border-radius:999px;
-  border:1px solid rgba(160,164,184,0.4);
-  background: radial-gradient(circle at top, rgba(17,20,31,0.9), rgba(11,13,20,0.9));
-  box-shadow:0 0 12px rgba(0,0,0,0.6);
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: 0.2s;
 }
 
-/* PAGE LAYOUT */
-main {
-  max-width:1100px; margin:0 auto;
-  padding:1.5rem 1.25rem 3rem;
+.nav-links a:hover {
+  color: var(--accent);
 }
 
+/* HERO BANNER — Warm Gold & Sepia Film Reel Macro */
+.hero-banner {
+  width: 100%;
+  height: 320px;
+  background: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1600&q=80') center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13,17,23,0.6),
+    rgba(13,17,23,0.9)
+  );
+}
+
+.hero-banner h2 {
+  position: relative;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.2rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 12px rgba(0,0,0,0.6);
+}
+
+/* Page Title */
 .page-title {
-  font-size:1.4rem; text-transform:uppercase; letter-spacing:0.12em;
-  margin-bottom:0.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  text-align: center;
 }
 
-.page-tagline {
-  font-size:0.9rem; color:var(--muted); margin-bottom:1.2rem;
-}
-
-/* PANELS */
+/* Panels */
 .panel-grid {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
 .panel {
-  background: radial-gradient(circle at top left, #181c2b 0, #0b0d14 55%);
-  border-radius:var(--radius); border:1px solid var(--border);
-  box-shadow:var(--shadow); padding:1rem 1.1rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: 0.25s;
 }
 
-.panel h3 {
-  font-size:1rem; text-transform:uppercase; letter-spacing:0.12em;
-  margin-bottom:0.4rem;
+.panel:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
 }
 
-.panel p { font-size:0.85rem; color:var(--muted); margin-bottom:0.5rem; }
-
-.panel ul { list-style:none; font-size:0.85rem; color:var(--muted); }
-
-.panel ul li {
-  margin-bottom:0.25rem; padding-left:1rem; position:relative;
+/* Section Divider */
+.section-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  margin: 2rem 0;
 }
 
-.panel ul li::before {
-  content:"▹"; position:absolute; left:0; top:0.1rem;
-  color:var(--accent2);
-}
-
-/* HERO */
-.hero {
-  background: radial-gradient(circle at top left, #181c2b 0, #0b0d14 55%);
-  border-radius:var(--radius); border:1px solid var(--border);
-  box-shadow:var(--shadow); padding:1.3rem 1.4rem;
-}
-
-.hero h2 {
-  font-size:1.5rem; text-transform:uppercase; letter-spacing:0.16em;
-  margin-bottom:0.6rem;
-}
-
-.hero-list { list-style:none; }
-
-.hero-list li {
-  margin-bottom:0.3rem; padding-left:1.1rem; position:relative;
-}
-
-.hero-list li::before {
-  content:"●"; position:absolute; left:0; top:0.1rem;
-  color:var(--accent);
-}
-
-/* FOOTER */
+/* Footer */
 footer {
-  border-top:1px solid var(--border);
-  padding:1rem 1.25rem 1.5rem;
-  background: radial-gradient(circle at bottom, #151827 0, #05060a 55%);
-  font-size:0.8rem; color:var(--muted);
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  position: relative;
 }
 
-.footer-inner {
-  max-width:1100px; margin:0 auto;
-  display:flex; justify-content:space-between; flex-wrap:wrap;
+footer::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent),
+    transparent
+  );
+}
+
+/* Flashcards */
+.flashcard {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+/* Buttons */
+button {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
