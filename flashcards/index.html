@@ -1,1 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flashcards – IB Film Studies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .flashcard-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+
+    .flashcard {
+      background: radial-gradient(circle at top left, #181c2b 0, #0b0d14 55%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.4s;
+      user-select: none;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-inner {
+      transition: transform 0.4s;
+      transform-style: preserve-3d;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .flashcard-front,
+    .flashcard-back {
+      position: absolute;
+      width: 100%;
+      backface-visibility: hidden;
+    }
+
+    .flashcard-back {
+      transform: rotateY(180deg);
+      color: var(--accent2);
+    }
+
+    .flashcard-controls {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .flashcard-controls button {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, rgba(17,20,31,0.9), rgba(11,13,20,0.9));
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    .flashcard-controls button:hover {
+      background: rgba(29,155,240,0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="nav-title">
+      <div class="nav-logo"></div>
+      <div>
+        <h1>IB Film Studies</h1>
+        <span>Flashcards</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../theory/">Theory</a>
+      <a href="../analysis/">Analysis</a>
+      <a href="../production/">Production</a>
+      <a href="../assessments/">Assessments</a>
+      <a href="../case-studies/">Case Studies</a>
+      <a href="../resources/">Resources</a>
+      <a href="../videos/">Videos</a>
+      <a href="../quizzes/">Quizzes</a>
+      <a href="../flashcards/">Flashcards</a>
+      <a href="../specification/">Specification</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <h2 class="page-title">Film Terminology Flashcards</h2>
+  <p class="page-tagline">Tap to flip. Use the buttons to navigate or shuffle.</p>
+
+  <div class="flashcard-container">
+    <div class="flashcard" onclick="flipCard()">
+      <div class="flashcard-inner" id="flashcard-inner">
+        <div class="flashcard-front" id="flashcard-front"></div>
+        <div class="flashcard-back" id="flashcard-back"></div>
+      </div>
+    </div>
+
+    <div class="flashcard-controls">
+      <button onclick="prevCard()">Previous</button>
+      <button onclick="nextCard()">Next</button>
+      <button onclick="shuffleCards()">Shuffle</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>IB Film Studies – Flashcards</span>
+    <span>Tap to flip. Shuffle for revision.</span>
+  </div>
+</footer>
+
+<script>
+  const flashcards = [
+    { term: "Diegetic Sound", definition: "Sound that exists within the world of the film." },
+    { term: "Non‑Diegetic Sound", definition: "Sound added for the audience, such as music or narration." },
+    { term: "Mise‑en‑scène", definition: "Everything placed in front of the camera: setting, costume, lighting, actors." },
+    { term: "Cinematography", definition: "The art of camera work: framing, movement, lenses, angles." },
+    { term: "Montage", definition: "A sequence of shots edited together to condense time or convey meaning." },
+    { term: "Jump Cut", definition: "An abrupt edit that disrupts continuity, often intentionally." },
+    { term: "Long Take", definition: "A shot that lasts much longer than the typical editing pace." },
+    { term: "Close‑Up", definition: "A shot that tightly frames a subject, often used for emotion." },
+    { term: "High‑Key Lighting", definition: "Bright, even lighting with minimal shadows." },
+    { term: "Low‑Key Lighting", definition: "Lighting with strong contrast and deep shadows." },
+    { term: "Blocking", definition: "The precise staging and movement of actors within a scene." },
+    { term: "Shot Reverse Shot", definition: "Editing pattern used for dialogue scenes." },
+    { term: "Establishing Shot", definition: "A wide shot that sets the location or context." },
+    { term: "Match Cut", definition: "A cut that links two shots through visual or thematic similarity." },
+    { term: "Diegesis", definition: "The narrative world of the film." }
+  ];
+
+  let current = 0;
+
+  function updateCard() {
+    document.getElementById("flashcard-front").textContent = flashcards[current].term;
+    document.getElementById("flashcard-back").textContent = flashcards[current].definition;
+    document.getElementById("flashcard-inner").classList.remove("flipped");
+  }
+
+  function flipCard() {
+    document.getElementById("flashcard-inner").classList.toggle("flipped");
+  }
+
+  function nextCard() {
+    current = (current + 1) % flashcards.length;
+    updateCard();
+  }
+
+  function prevCard() {
+    current = (current - 1 + flashcards.length) % flashcards.length;
+    updateCard();
+  }
+
+  function shuffleCards() {
+    current = Math.floor(Math.random() * flashcards.length);
+    updateCard();
+  }
+
+  updateCard();
+</script>
+
+</body>
+</html>
 
